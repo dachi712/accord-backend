@@ -7,16 +7,16 @@ import { TypeOrmModule } from '@nestjs/typeorm';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: "localhost",
+      host: 'localhost',
       port: 3306,
       username: 'root',
       password: '123456',
       database: 'crumbs',
       autoLoadEntities: true,
       synchronize: true,
-    })
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}
