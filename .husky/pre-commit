@@ -1,5 +1,11 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
+# 1) ლინტი
+npm run lint
+
+# 2) ტესტები (თუ გინდა)
 npm test
-npm test
+
+# 3) საბოლოოდ build‑ი
+npm run build
