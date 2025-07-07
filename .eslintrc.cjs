@@ -26,7 +26,7 @@ module.exports = {
     quotes: ['error', 'single', { avoidEscape: true }],
     eqeqeq: ['error', 'always'],
     '@typescript-eslint/no-explicit-any': 'warn',
-    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/explicit-function-return-type': 'warn',
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'warn',
   },
 };

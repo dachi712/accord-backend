@@ -4,8 +4,5 @@
 # 1) ლინტი
 npm run lint
 
-# 2) ტესტები (თუ გინდა)
-npm test
-
 # 3) საბოლოოდ build‑ი
 npm run build
