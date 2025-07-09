@@ -1,17 +1,11 @@
 import {
   Column,
-  CreateDateColumn,
-  DeleteDateColumn,
   Entity,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
 } from 'typeorm';
+import { BaseEntity } from '../../common/entities/base.entity';
 
 @Entity()
-export class Album {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+export class Album extends BaseEntity {
   @Column()
   title: string;
 
@@ -23,13 +17,4 @@ export class Album {
 
   @Column({ nullable: true })
   genre?: string;
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
-
-  @DeleteDateColumn()
-  DeletedAt: Date;
 }

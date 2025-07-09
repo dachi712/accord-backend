@@ -1,17 +1,11 @@
 import {
   Column,
-  CreateDateColumn,
-  DeleteDateColumn,
   Entity,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
 } from 'typeorm';
+import { BaseEntity } from '../../common/entities/base.entity';
 
 @Entity()
-export class Artist {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+export class Artist extends BaseEntity {
   @Column()
   name: string;
 
@@ -20,13 +14,4 @@ export class Artist {
 
   @Column()
   isActive: boolean;
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
-
-  @DeleteDateColumn()
-  deletedAt: Date;
 }

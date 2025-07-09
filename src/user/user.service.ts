@@ -10,7 +10,7 @@ import { DeleteResult } from 'typeorm';
 export class UserService {
   constructor(private readonly userRepository: UserRepository) {}
 
-  async create(createUserDto: CreateUserDto): Promise<User> {
+  async create(createUserDto: CreateUserDto): Promise<Partial<User>> {
     return this.userRepository.create(createUserDto);
   }
 
