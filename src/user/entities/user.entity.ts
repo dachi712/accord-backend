@@ -7,8 +7,7 @@ import { Exclude } from 'class-transformer';
 
 @Entity()
 export class User extends BaseEntity {
-  [x: string]: any;
-  @Column()
+  @Column({ select: false })
   username: string;
 
   @Column()

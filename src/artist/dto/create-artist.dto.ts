@@ -1,5 +1,3 @@
-import { Trim } from 'class-sanitizer';
-import { Transform } from 'class-transformer';
 import { IsBoolean, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 import { CapitalizeFirst } from 'src/utils/capitalizeFitst';
 import { CleanString } from 'src/utils/cleanString';
