@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsPositive, IsString } from 'class-validator';
+import { ArrayNotEmpty, ArrayUnique, IsArray, IsNotEmpty, IsNumber, IsPositive, IsString } from 'class-validator';
 import { CapitalizeFirst } from 'src/utils/capitalizeFitst';
 import { CleanString } from 'src/utils/cleanString';
 
@@ -8,11 +8,15 @@ export class CreateMusicDto {
   @CleanString()
   title: string;
 
-  @IsString()
-  @IsNotEmpty()
-  @CapitalizeFirst()
-  @CleanString()
-  artist: string;
+  @IsArray()
+  @ArrayNotEmpty()
+  @ArrayUnique()
+  artistIds: number[];
+
+  @IsArray()
+  @ArrayNotEmpty()
+  @ArrayUnique()
+  albumId: number;
 
   @IsNumber()
   @IsPositive()

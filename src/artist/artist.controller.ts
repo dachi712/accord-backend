@@ -37,8 +37,8 @@ export class ArtistController {
   }
 
   @Delete('soft/:id')
-  softRemove(@Param('id', ParseIntPipe) id: number) {
-    return this.artistService.softRemove(id);
+  softRemove(@Param('id', ParseIntPipe) id: string) {
+    return this.artistService.softRemove(+id);
   }
 
   @Delete(':id')

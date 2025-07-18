@@ -3,10 +3,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserRepository } from './user.repository';
 import { User } from './entities/user.entity';
-import { promises } from 'dns';
 import { DeleteResult } from 'typeorm';
-import { NotFoundError } from 'rxjs';
-import { resourceUsage } from 'process';
 
 @Injectable()
 export class UserService {

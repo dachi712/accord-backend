@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { DeleteResult, Repository } from 'typeorm';
+import { DeleteResult, FindManyOptions, Repository } from 'typeorm';
 import { Album } from './entities/album.entity';
 import { CreateAlbumDto } from './dto/create-album.dto';
 import { UpdateAlbumDto } from './dto/update-album.dto';
@@ -10,7 +10,7 @@ export class AlbumRepository {
   constructor(
     @InjectRepository(Album)
     private readonly albumRepository: Repository<Album>
-  ) {}
+  ) { }
 
   async create(data: CreateAlbumDto): Promise<Album> {
     const newAlbum = this.albumRepository.create(data);
@@ -20,6 +20,8 @@ export class AlbumRepository {
   async update(id: number, data: UpdateAlbumDto): Promise<Album> {
     const album = await this.albumRepository.findOneBy({ id });
     if (!album) throw new NotFoundException('Album Not Found');
+
+    Object.assign(album, data)
 
     return this.albumRepository.save(album);
   }
@@ -38,6 +40,10 @@ export class AlbumRepository {
     if (!album) throw new NotFoundException('Album Not Found');
 
     return album;
+  }
+
+  async find(options?: FindManyOptions<Album>): Promise<Album[]> {
+    return this.albumRepository.find(options)
   }
 
   async softRemove(id: number): Promise<Album> {

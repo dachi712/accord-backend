@@ -10,12 +10,6 @@ export class CreateAlbumDto {
     @CapitalizeFirst()
     title: string;
 
-    @IsString()
-    @IsNotEmpty()
-    @CleanString()
-    @CapitalizeFirst()
-    artist: string;
-
     @IsNumber()
     @IsPositive()
     releaseYear: number;

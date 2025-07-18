@@ -5,8 +5,6 @@ import { DeleteResult, Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import * as bcrypt from 'bcrypt';
-import { instanceToPlain } from 'class-transformer';
-import { resolveObjectURL } from 'buffer';
 
 @Injectable()
 export class UserRepository {

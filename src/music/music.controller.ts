@@ -27,8 +27,8 @@ export class MusicController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.musicService.findOne(+id);
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.musicService.findOne(id);
   }
 
   @Patch(':id')
