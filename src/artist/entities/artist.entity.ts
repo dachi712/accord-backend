@@ -2,6 +2,7 @@ import {
   Column,
   Entity,
   ManyToMany,
+  OneToMany,
 } from 'typeorm';
 import { BaseEntity } from '../../common/entities/base.entity';
 import { Album } from 'src/album/entities/album.entity';
@@ -15,7 +16,7 @@ export class Artist extends BaseEntity {
   @Column()
   genre: string;
 
-  @ManyToMany(() => Album, (album) => album.artists)
+  @OneToMany(() => Album, (album) => album.artists)
   albums: Album[];
 
   @ManyToMany(() => Music, (music) => music.artists)

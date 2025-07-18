@@ -2,7 +2,7 @@ import {
   Column,
   Entity,
   JoinTable,
-  ManyToMany,
+  ManyToOne,
   OneToMany,
 } from 'typeorm';
 import { BaseEntity } from '../../common/entities/base.entity';
@@ -20,8 +20,7 @@ export class Album extends BaseEntity {
   @Column({ nullable: true })
   genre?: string;
 
-  @ManyToMany(() => Artist, (artist) => artist.albums)
-  @JoinTable()
+  @ManyToOne(() => Artist, (artist) => artist.albums)
   artists: Artist[];
 
   @OneToMany(() => Music, (music) => music.album)

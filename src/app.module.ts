@@ -18,6 +18,7 @@ import { AlbumModule } from './album/album.module';
       database: 'crumbs',
       autoLoadEntities: true,
       synchronize: true,
+      dropSchema: true
     }),
     UserModule,
     MusicModule,
