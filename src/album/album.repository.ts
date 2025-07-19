@@ -10,7 +10,7 @@ export class AlbumRepository {
   constructor(
     @InjectRepository(Album)
     private readonly albumRepository: Repository<Album>
-  ) { }
+  ) {}
 
   async create(data: CreateAlbumDto): Promise<Album> {
     const newAlbum = this.albumRepository.create(data);
@@ -21,7 +21,7 @@ export class AlbumRepository {
     const album = await this.albumRepository.findOneBy({ id });
     if (!album) throw new NotFoundException('Album Not Found');
 
-    Object.assign(album, data)
+    Object.assign(album, data);
 
     return this.albumRepository.save(album);
   }
@@ -43,7 +43,7 @@ export class AlbumRepository {
   }
 
   async find(options?: FindManyOptions<Album>): Promise<Album[]> {
-    return this.albumRepository.find(options)
+    return this.albumRepository.find(options);
   }
 
   async softRemove(id: number): Promise<Album> {

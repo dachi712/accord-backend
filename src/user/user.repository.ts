@@ -11,7 +11,7 @@ export class UserRepository {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>
-  ) { }
+  ) {}
 
   async create(data: CreateUserDto): Promise<Partial<User>> {
     const { username, email, password } = data;

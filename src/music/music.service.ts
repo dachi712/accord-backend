@@ -13,12 +13,14 @@ export class MusicService {
     private readonly musicRepository: MusicRepository,
     private readonly artistRepository: ArtistRepository,
     private readonly albumRepository: AlbumRepository
-  ) { }
+  ) {}
 
   async create(createMusicDto: CreateMusicDto): Promise<Music> {
     const { title, releaseYear, genre, artistIds, albumId } = createMusicDto;
 
-    const artists = await this.artistRepository.find({ where: { id: In(artistIds) } });
+    const artists = await this.artistRepository.find({
+      where: { id: In(artistIds) },
+    });
     const album = await this.albumRepository.findOne(albumId);
 
     const musicData: DeepPartial<Music> = {
@@ -26,17 +28,17 @@ export class MusicService {
       releaseYear,
       genre,
       artists,
-      album
-    }
+      album,
+    };
 
-    const music = this.musicRepository.create(musicData)
+    const music = this.musicRepository.create(musicData);
 
     return music;
   }
 
   async findAll(): Promise<Music[]> {
     return this.musicRepository.find({
-      relations: ['albums', 'artists']
+      relations: ['albums', 'artists'],
     });
   }
 

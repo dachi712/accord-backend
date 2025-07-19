@@ -7,7 +7,7 @@ import { DeleteResult } from 'typeorm';
 
 @Injectable()
 export class UserService {
-  constructor(private readonly userRepository: UserRepository) { }
+  constructor(private readonly userRepository: UserRepository) {}
 
   async create(createUserDto: CreateUserDto): Promise<Partial<User>> {
     return this.userRepository.create(createUserDto);
@@ -20,7 +20,7 @@ export class UserService {
 
   async findOne(id: number): Promise<Partial<User>> {
     const user = await this.userRepository.findOne(id);
-    if (!user) throw new NotFoundException('User Not Found')
+    if (!user) throw new NotFoundException('User Not Found');
 
     const { password, ...result } = user;
     return result;

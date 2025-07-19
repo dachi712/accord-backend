@@ -10,7 +10,7 @@ export class ArtistRepository {
   constructor(
     @InjectRepository(Artist)
     private readonly artistRepository: Repository<Artist>
-  ) { }
+  ) {}
 
   async create(data: CreateArtistDto): Promise<Artist> {
     const newArtist = this.artistRepository.create(data);
@@ -45,7 +45,7 @@ export class ArtistRepository {
   }
 
   async find(options?: FindManyOptions<Artist>): Promise<Artist[]> {
-    return this.artistRepository.find(options)
+    return this.artistRepository.find(options);
   }
 
   async softRemove(id: number): Promise<Artist> {

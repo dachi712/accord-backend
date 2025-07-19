@@ -1,9 +1,4 @@
-import {
-  Column,
-  Entity,
-  ManyToMany,
-  OneToMany,
-} from 'typeorm';
+import { Column, Entity, ManyToMany, OneToMany } from 'typeorm';
 import { BaseEntity } from '../../common/entities/base.entity';
 import { Album } from 'src/album/entities/album.entity';
 import { Music } from 'src/music/entities/music.entity';
@@ -16,12 +11,9 @@ export class Artist extends BaseEntity {
   @Column()
   genre: string;
 
-  @OneToMany(() => Album, (album) => album.artists)
+  @OneToMany(() => Album, album => album.artists)
   albums: Album[];
 
-  @ManyToMany(() => Music, (music) => music.artists)
+  @OneToMany(() => Music, music => music.artists)
   musics: Music[];
-
-  @Column()
-  isActive: boolean;
 }
