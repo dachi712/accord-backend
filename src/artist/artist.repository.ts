@@ -1,10 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { privateDecrypt } from 'crypto';
 import { Artist } from './entities/artist.entity';
-import { DeleteResult, Repository } from 'typeorm';
+import { DeleteResult, FindManyOptions, Repository } from 'typeorm';
 import { CreateArtistDto } from './dto/create-artist.dto';
-import { Music } from 'src/music/entities/music.entity';
 import { UpdateArtistDto } from './dto/update-artist.dto';
 
 @Injectable()
@@ -46,6 +44,10 @@ export class ArtistRepository {
     return artist;
   }
 
+  async find(options?: FindManyOptions<Artist>): Promise<Artist[]> {
+    return this.artistRepository.find(options);
+  }
+
   async softRemove(id: number): Promise<Artist> {
     const artist = await this.artistRepository.findOne({ where: { id } });
     if (!artist) throw new NotFoundException('Artist Not Found');
@@ -57,6 +59,6 @@ export class ArtistRepository {
     const artist = await this.artistRepository.findOne({ where: { id } });
     if (!artist) throw new NotFoundException('Artist Not Found');
 
-    return this.artistRepository.delete(id)
+    return this.artistRepository.delete(id);
   }
 }

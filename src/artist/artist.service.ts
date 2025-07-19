@@ -14,22 +14,22 @@ export class ArtistService {
   }
 
   async findAll(): Promise<Artist[]> {
-    return this.artistRepository.findAll()
+    return this.artistRepository.findAll();
   }
 
   async findOne(id: number): Promise<Artist> {
-    return this.artistRepository.findOne(id)
+    return this.artistRepository.findOne(id);
   }
 
   async update(id: number, updateArtistDto: UpdateArtistDto): Promise<Artist> {
-    return this.artistRepository.update(id, updateArtistDto)
+    return this.artistRepository.update(id, updateArtistDto);
   }
 
   async softRemove(id: number): Promise<Artist> {
-    return this.artistRepository.softRemove(id)
+    return this.artistRepository.softRemove(id);
   }
 
   async remove(id: number): Promise<DeleteResult> {
-    return this.artistRepository.remove(id)
+    return this.artistRepository.remove(id);
   }
 }

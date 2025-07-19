@@ -1,16 +1,18 @@
-import {
-  Column,
-  Entity,
-} from 'typeorm';
+import { Column, Entity, ManyToOne } from 'typeorm';
 import { BaseEntity } from '../../common/entities/base.entity';
+import { Artist } from 'src/artist/entities/artist.entity';
+import { Album } from 'src/album/entities/album.entity';
 
 @Entity()
 export class Music extends BaseEntity {
   @Column()
   title: string;
 
-  @Column()
-  artist: string;
+  @ManyToOne(() => Artist, artist => artist.musics)
+  artists: Artist[];
+
+  @ManyToOne(() => Album, album => album.musics, { eager: true })
+  album: Album;
 
   @Column({ nullable: true })
   releaseYear?: number;

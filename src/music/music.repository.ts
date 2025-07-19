@@ -1,8 +1,12 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Music } from './entities/music.entity';
-import { DeleteResult, Repository } from 'typeorm';
-import { CreateMusicDto } from './dto/create-music.dto';
+import {
+  DeepPartial,
+  DeleteResult,
+  FindManyOptions,
+  Repository,
+} from 'typeorm';
 import { UpdateMusicDto } from './dto/update-music.dto';
 
 @Injectable()
@@ -12,7 +16,7 @@ export class MusicRepository {
     private readonly musicRepository: Repository<Music>
   ) {}
 
-  async create(data: CreateMusicDto): Promise<Music> {
+  async create(data: DeepPartial<Music>): Promise<Music> {
     const newMusic = this.musicRepository.create(data);
     return this.musicRepository.save(newMusic);
   }
@@ -35,11 +39,19 @@ export class MusicRepository {
     return results;
   }
 
+  async find(options?: FindManyOptions<Music>): Promise<Music[]> {
+    return this.musicRepository.find(options);
+  }
+
   async findOne(id: number): Promise<Music> {
     const music = await this.musicRepository.findOne({ where: { id } });
     if (!music) throw new NotFoundException('Music Not Found');
 
     return music;
+  }
+
+  async save(music: Music): Promise<Music> {
+    return await this.musicRepository.save(music);
   }
 
   async softRemove(id: number): Promise<Music> {
