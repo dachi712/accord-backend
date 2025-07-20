@@ -16,18 +16,16 @@ export class MusicService {
   ) {}
 
   async create(createMusicDto: CreateMusicDto): Promise<Music> {
-    const { title, releaseYear, genre, artistIds, albumId } = createMusicDto;
+    const { title, releaseYear, genre, artistId, albumId } = createMusicDto;
 
-    const artists = await this.artistRepository.find({
-      where: { id: In(artistIds) },
-    });
+    const artist = await this.artistRepository.findOne(artistId);
     const album = await this.albumRepository.findOne(albumId);
 
     const musicData: DeepPartial<Music> = {
       title,
       releaseYear,
       genre,
-      artists,
+      artist,
       album,
     };
 
@@ -38,7 +36,7 @@ export class MusicService {
 
   async findAll(): Promise<Music[]> {
     return this.musicRepository.find({
-      relations: ['albums', 'artists'],
+      relations: ['album', 'artist'],
     });
   }
 

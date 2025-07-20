@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToMany, OneToMany } from 'typeorm';
+import { Column, Entity, OneToMany } from 'typeorm';
 import { BaseEntity } from '../../common/entities/base.entity';
 import { Album } from 'src/album/entities/album.entity';
 import { Music } from 'src/music/entities/music.entity';
@@ -14,6 +14,6 @@ export class Artist extends BaseEntity {
   @OneToMany(() => Album, album => album.artists)
   albums: Album[];
 
-  @OneToMany(() => Music, music => music.artists)
+  @OneToMany(() => Music, music => music.artist)
   musics: Music[];
 }
