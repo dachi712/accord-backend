@@ -19,7 +19,6 @@ import { SearchModule } from './search/search.module';
       database: 'crumbs',
       autoLoadEntities: true,
       synchronize: true,
-      dropSchema: true
     }),
     UserModule,
     MusicModule,

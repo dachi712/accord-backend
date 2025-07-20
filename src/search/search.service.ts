@@ -13,24 +13,51 @@ export class SearchService {
     @InjectRepository(Album) private albumRepository: Repository<Album>
   ) {}
 
-  async search(query: string) {
+  async search(query: string, limit?: number, offset?: number) {
     const like = `%${query}%`;
 
-    const music = await this.musicRepository
+    const musicQuery = this.musicRepository
       .createQueryBuilder('music')
-      .where('music.title LIKE :like', { like })
-      .getMany();
+      .where('music.title LIKE :like', { like });
 
-    const artists = await this.artistRepository
+    if (limit) {
+      musicQuery.limit(limit);
+    }
+
+    if (offset) {
+      musicQuery.offset(offset);
+    }
+
+    const music = await musicQuery.getMany();
+
+    const artistQuery = this.artistRepository
       .createQueryBuilder('artist')
-      .where('artist.name LIKE :like', { like })
-      .getMany();
+      .where('artist.name LIKE :like', { like });
 
-    const albums = await this.albumRepository
+    if (limit) {
+      artistQuery.limit(limit);
+    }
+
+    if (offset) {
+      artistQuery.offset(offset);
+    }
+
+    const artist = await artistQuery.getMany();
+
+    const albumQuery = this.albumRepository
       .createQueryBuilder('albums')
-      .where('albums.title LIKE :like', { like })
-      .getMany();
+      .where('albums.title LIKE :like', { like });
 
-    return { music, artists, albums };
+    if (limit) {
+      albumQuery.limit(limit);
+    }
+
+    if (offset) {
+      albumQuery.offset(offset);
+    }
+
+    const album = await albumQuery.getMany();
+
+    return { music, artist, album };
   }
 }
