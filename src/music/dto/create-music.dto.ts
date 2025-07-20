@@ -16,10 +16,9 @@ export class CreateMusicDto {
   @CleanString()
   title: string;
 
-  @IsArray()
   @ArrayNotEmpty()
   @ArrayUnique()
-  artistIds: number[];
+  artistId: number;
 
   @IsArray()
   @ArrayNotEmpty()
