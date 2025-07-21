@@ -9,6 +9,7 @@ export class Music extends BaseEntity {
   title: string;
 
   @ManyToOne(() => Artist, artist => artist.musics, { eager: true })
+
   artist: Artist;
 
   @ManyToOne(() => Album, album => album.musics, { eager: true })
