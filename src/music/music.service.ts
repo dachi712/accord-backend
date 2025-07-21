@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateMusicDto } from './dto/create-music.dto';
 import { UpdateMusicDto } from './dto/update-music.dto';
 import { MusicRepository } from './music.repository';
@@ -6,6 +6,7 @@ import { Music } from './entities/music.entity';
 import { DeepPartial, DeleteResult, In } from 'typeorm';
 import { ArtistRepository } from 'src/artist/artist.repository';
 import { AlbumRepository } from 'src/album/album.repository';
+import { NotFoundError } from 'rxjs';
 
 @Injectable()
 export class MusicService {
@@ -35,9 +36,13 @@ export class MusicService {
   }
 
   async findAll(): Promise<Music[]> {
-    return this.musicRepository.find({
-      relations: ['album', 'artist'],
-    });
+    const results = await this.musicRepository.find();
+
+    if (results.length === 0) {
+      throw new NotFoundException('No Musics Found In Database');
+    }
+
+    return results;
   }
 
   async findOne(id: number): Promise<Music> {

@@ -6,6 +6,7 @@ import { UserModule } from './user/user.module';
 import { MusicModule } from './music/music.module';
 import { ArtistModule } from './artist/artist.module';
 import { AlbumModule } from './album/album.module';
+import { SearchModule } from './search/search.module';
 
 @Module({
   imports: [
@@ -18,12 +19,12 @@ import { AlbumModule } from './album/album.module';
       database: 'crumbs',
       autoLoadEntities: true,
       synchronize: true,
-      dropSchema: true
     }),
     UserModule,
     MusicModule,
     ArtistModule,
     AlbumModule,
+    SearchModule,
   ],
   controllers: [AppController],
   providers: [AppService],
