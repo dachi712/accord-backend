@@ -4,6 +4,7 @@ import { Music } from '../music/entities/music.entity';
 import { Repository } from 'typeorm';
 import { Artist } from '../artist/entities/artist.entity';
 import { Album } from '../album/entities/album.entity';
+import { SearchResult } from './dto/search.dto';
 
 @Injectable()
 export class SearchService {
@@ -13,7 +14,11 @@ export class SearchService {
     @InjectRepository(Album) private albumRepository: Repository<Album>
   ) {}
 
-  async search(query: string, limit?: number, offset?: number) {
+  async search(
+    query: string,
+    limit?: number,
+    offset?: number
+  ): Promise<SearchResult> {
     const like = `%${query}%`;
 
     const musicQuery = this.musicRepository
@@ -42,11 +47,11 @@ export class SearchService {
       artistQuery.offset(offset);
     }
 
-    const artist = await artistQuery.getMany();
+    const artists = await artistQuery.getMany();
 
     const albumQuery = this.albumRepository
-      .createQueryBuilder('albums')
-      .where('albums.title LIKE :like', { like });
+      .createQueryBuilder('album')
+      .where('album.title LIKE :like', { like });
 
     if (limit) {
       albumQuery.limit(limit);
@@ -56,8 +61,8 @@ export class SearchService {
       albumQuery.offset(offset);
     }
 
-    const album = await albumQuery.getMany();
+    const albums = await albumQuery.getMany();
 
-    return { music, artist, album };
+    return { music, artists, albums };
   }
 }
