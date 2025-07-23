@@ -1,5 +1,5 @@
 import { IsEmail, IsNotEmpty, IsString, MinLength } from 'class-validator';
-import { CleanString } from 'src/utils/cleanString';
+import { CleanString } from '../../utils/cleanString';
 
 export class CreateUserDto {
   @IsString()

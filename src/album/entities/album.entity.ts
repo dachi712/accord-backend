@@ -1,7 +1,7 @@
-import { Column, Entity, JoinTable, ManyToOne, OneToMany } from 'typeorm';
+import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
 import { BaseEntity } from '../../common/entities/base.entity';
-import { Artist } from 'src/artist/entities/artist.entity';
-import { Music } from 'src/music/entities/music.entity';
+import { Artist } from '../../artist/entities/artist.entity';
+import { Music } from '../../music/entities/music.entity';
 
 @Entity()
 export class Album extends BaseEntity {

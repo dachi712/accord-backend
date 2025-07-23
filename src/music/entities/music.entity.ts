@@ -1,7 +1,7 @@
 import { Column, Entity, ManyToOne } from 'typeorm';
 import { BaseEntity } from '../../common/entities/base.entity';
-import { Artist } from 'src/artist/entities/artist.entity';
-import { Album } from 'src/album/entities/album.entity';
+import { Artist } from '../../artist/entities/artist.entity';
+import { Album } from '../../album/entities/album.entity';
 
 @Entity()
 export class Music extends BaseEntity {
@@ -9,7 +9,6 @@ export class Music extends BaseEntity {
   title: string;
 
   @ManyToOne(() => Artist, artist => artist.musics, { eager: true })
-
   artist: Artist;
 
   @ManyToOne(() => Album, album => album.musics, { eager: true })

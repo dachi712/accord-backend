@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsNumber, IsPositive, IsString } from 'class-validator';
-import { CapitalizeFirst } from 'src/utils/capitalizeFitst';
-import { CleanString } from 'src/utils/cleanString';
+import { CapitalizeFirst } from '../../utils/capitalizeFirst';
+import { CleanString } from '../../utils/cleanString';
 
 export class CreateAlbumDto {
   @IsString()

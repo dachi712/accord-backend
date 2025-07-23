@@ -28,5 +28,12 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'warn',
     '@typescript-eslint/explicit-function-return-type': 'warn',
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'warn',
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      { 
+        varsIgnorePattern: '^_',  // ignore vars starting with _
+        argsIgnorePattern: '^_'
+      }
+    ],
   },
 };
