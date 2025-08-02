@@ -1,6 +1,6 @@
 import { IsBoolean, IsNotEmpty, IsOptional, IsString } from 'class-validator';
-import { CapitalizeFirst } from 'src/utils/capitalizeFitst';
-import { CleanString } from 'src/utils/cleanString';
+import { CapitalizeFirst } from '../../utils/capitalizeFitst';
+import { CleanString } from '../../utils/cleanString';
 
 export class CreateArtistDto {
   @IsString()

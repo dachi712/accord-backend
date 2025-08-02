@@ -1,7 +1,7 @@
 import { Column, Entity, OneToMany } from 'typeorm';
 import { BaseEntity } from '../../common/entities/base.entity';
-import { Album } from 'src/album/entities/album.entity';
-import { Music } from 'src/music/entities/music.entity';
+import { Album } from '../../album/entities/album.entity';
+import { Music } from '../../music/entities/music.entity';
 
 @Entity()
 export class Artist extends BaseEntity {

@@ -3,10 +3,9 @@ import { CreateMusicDto } from './dto/create-music.dto';
 import { UpdateMusicDto } from './dto/update-music.dto';
 import { MusicRepository } from './music.repository';
 import { Music } from './entities/music.entity';
-import { DeepPartial, DeleteResult, In } from 'typeorm';
-import { ArtistRepository } from 'src/artist/artist.repository';
-import { AlbumRepository } from 'src/album/album.repository';
-import { NotFoundError } from 'rxjs';
+import { DeepPartial, DeleteResult } from 'typeorm';
+import { ArtistRepository } from '../artist/artist.repository';
+import { AlbumRepository } from '../album/album.repository';
 
 @Injectable()
 export class MusicService {

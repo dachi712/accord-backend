@@ -8,12 +8,13 @@ async function bootstrap(): Promise<void> {
   app.useGlobalPipes(
     new SanitizePipe(),
     new ValidationPipe({
-    whitelist: true,
-    transform: true,
-    transformOptions: {
-      enableImplicitConversion: true
-    }
-  }))
+      whitelist: true,
+      transform: true,
+      transformOptions: {
+        enableImplicitConversion: true,
+      },
+    })
+  );
 
   await app.listen(process.env.PORT ?? 3001);
 }
