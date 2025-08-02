@@ -9,9 +9,14 @@ import { SearchResult } from './dto/search.dto';
 @Injectable()
 export class SearchService {
   constructor(
-    @InjectRepository(Music) private musicRepository: Repository<Music>,
-    @InjectRepository(Artist) private artistRepository: Repository<Artist>,
-    @InjectRepository(Album) private albumRepository: Repository<Album>
+    @InjectRepository(Music)
+    private readonly musicRepository: Repository<Music>,
+
+    @InjectRepository(Artist)
+    private readonly artistRepository: Repository<Artist>,
+
+    @InjectRepository(Album)
+    private readonly albumRepository: Repository<Album>
   ) {}
 
   async search(
@@ -25,13 +30,8 @@ export class SearchService {
       .createQueryBuilder('music')
       .where('music.title LIKE :like', { like });
 
-    if (limit) {
-      musicQuery.limit(limit);
-    }
-
-    if (offset) {
-      musicQuery.offset(offset);
-    }
+    if (limit) musicQuery.limit(limit);
+    if (offset) musicQuery.offset(offset);
 
     const music = await musicQuery.getMany();
 
@@ -39,13 +39,8 @@ export class SearchService {
       .createQueryBuilder('artist')
       .where('artist.name LIKE :like', { like });
 
-    if (limit) {
-      artistQuery.limit(limit);
-    }
-
-    if (offset) {
-      artistQuery.offset(offset);
-    }
+    if (limit) artistQuery.limit(limit);
+    if (offset) artistQuery.offset(offset);
 
     const artists = await artistQuery.getMany();
 
@@ -53,13 +48,8 @@ export class SearchService {
       .createQueryBuilder('album')
       .where('album.title LIKE :like', { like });
 
-    if (limit) {
-      albumQuery.limit(limit);
-    }
-
-    if (offset) {
-      albumQuery.offset(offset);
-    }
+    if (limit) albumQuery.limit(limit);
+    if (offset) albumQuery.offset(offset);
 
     const albums = await albumQuery.getMany();
 

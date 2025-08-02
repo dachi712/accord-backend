@@ -15,14 +15,14 @@ export class UserService {
 
   async findAll(): Promise<Partial<User>[]> {
     const users = await this.userRepository.findAll();
-    return users.map(({ password: _password, ...user }) => user);
+    return users.map(({ password: _, ...user }) => user);
   }
 
   async findOne(id: number): Promise<Partial<User>> {
     const user = await this.userRepository.findOne(id);
     if (!user) throw new NotFoundException('User Not Found');
 
-    const { password: _password, ...result } = user;
+    const { password: _, ...result } = user;
     return result;
   }
 
