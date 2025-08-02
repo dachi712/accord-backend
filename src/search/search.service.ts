@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Music } from '../music/entities/music.entity';
 import { Artist } from '../artist/entities/artist.entity';
 import { Album } from '../album/entities/album.entity';
 import { SearchResult } from './dto/search.dto';
@@ -53,10 +52,6 @@ export class SearchService {
 
     const albums = await albumQuery.getMany();
 
-    return {
-      music,
-      artists,
-      albums,
-    };
+    return { music, artists, albums };
   }
 }

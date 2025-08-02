@@ -7,7 +7,7 @@ import {
   IsPositive,
   IsString,
 } from 'class-validator';
-import { CapitalizeFirst } from '../../utils/capitalizeFitst';
+import { CapitalizeFirst } from '../../utils/capitalizeFirst';
 import { CleanString } from '../../utils/cleanString';
 
 export class CreateMusicDto {
