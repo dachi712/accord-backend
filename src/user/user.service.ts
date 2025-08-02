@@ -27,8 +27,7 @@ export class UserService {
   }
 
   async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
-    return this.userRepository.update(id, updateUserDto)
-    ;
+    return this.userRepository.update(id, updateUserDto);
   }
 
   async softRemove(id: number): Promise<User> {
