@@ -20,6 +20,12 @@ export class MusicRepository {
     const newMusic = this.musicRepository.create(data);
     return this.musicRepository.save(newMusic);
   }
+  async incrementViews(id: number): Promise<void> {
+    const results = await this.musicRepository.increment({ id }, 'views', 1);
+    if (results.affected === 0) {
+      throw new NotFoundException('Music  Not Found');
+    }
+  }
 
   async update(id: number, data: UpdateMusicDto): Promise<Music> {
     const music = await this.musicRepository.findOneBy({ id });

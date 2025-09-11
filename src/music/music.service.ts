@@ -33,6 +33,9 @@ export class MusicService {
 
     return music;
   }
+  async incrementViews(id: number): Promise<void> {
+    return this.musicRepository.incrementViews(id);
+  }
 
   async findAll(): Promise<Music[]> {
     const results = await this.musicRepository.find();

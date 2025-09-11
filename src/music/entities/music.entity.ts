@@ -19,4 +19,7 @@ export class Music extends BaseEntity {
 
   @Column({ nullable: true })
   genre?: string;
+
+  @Column({nullable: true})
+  views: number = 0;
 }
