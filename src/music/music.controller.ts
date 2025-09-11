@@ -22,6 +22,11 @@ export class MusicController {
   create(@Body() createMusicDto: CreateMusicDto): Promise<Music> {
     return this.musicService.create(createMusicDto);
   }
+  @Post(':id/play')
+  async play(@Param('id') id: number) {
+    await this.musicService.incrementViews(id);
+    return this.musicService.findOne(id);
+  }
 
   @Get()
   findAll(): Promise<Music[]> {
