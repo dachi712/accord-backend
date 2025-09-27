@@ -6,6 +6,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import * as bcrypt from 'bcrypt';
 
+
 @Injectable()
 export class UserRepository {
   constructor(
@@ -14,11 +15,11 @@ export class UserRepository {
   ) {}
 
   async create(data: CreateUserDto): Promise<Partial<User>> {
-    const { username, email, password } = data;
+    const { userName, email, password } = data;
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = new User();
-    newUser.username = username;
+    newUser.userName = userName;
     newUser.email = email;
     newUser.password = hashedPassword;
 
@@ -63,4 +64,8 @@ export class UserRepository {
 
     return this.userRepository.delete(id);
   }
+  async findByUsername(userName: string): Promise<User | null> {
+  return this.userRepository.findOneBy({ userName });
+}
+
 }

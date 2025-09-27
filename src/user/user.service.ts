@@ -7,6 +7,10 @@ import { DeleteResult } from 'typeorm';
 
 @Injectable()
 export class UserService {
+    [x: string]: any;
+ async findOneByUsername(username: string): Promise<User | null> {
+      return this.userRepository.findByUsername(username);
+  }
   constructor(private readonly userRepository: UserRepository) {}
 
   async create(createUserDto: CreateUserDto): Promise<Partial<User>> {
